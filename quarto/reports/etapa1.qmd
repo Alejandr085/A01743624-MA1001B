@@ -18,7 +18,19 @@ library(here)
 
 M19 <- read_csv(here("data", "Datos_molec_2019.csv"))
 M20 <- read_csv(here("data", "Datos_molec_2020.csv"))
+M21 <- read_csv(here("data", "Datos_molec_2021.csv"))
+M22 <- read_csv(here("data", "Datos_molec_2022.csv"))
+M23 <- read_csv(here("data", "Datos_molec_2023.csv"))
+M24 <- read_csv(here("data", "Datos_molec_2024.csv"))
+
+# glimpse(M19)
+
 str(M19)
+str(M20)
+str(M21)
+str(M22)
+str(M23)
+str(M24)
 ```
 
 1980 observaciones con 108 variables. La mayoría de las variables son cualitativas, pero están insertas como números. Se tiene que revisar en el contexto del problema cuáles son realmente numéricas.
