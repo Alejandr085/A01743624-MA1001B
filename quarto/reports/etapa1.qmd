@@ -39,6 +39,12 @@ str(M24)
 
 ```{r}
 Dicc19 <- read_csv(here("data", "Diccionario_molec_2019.csv"))
+Dicc20 <- read_csv(here("data", "Diccionario_molec_2020.csv"))
+Dicc21 <- read_csv(here("data", "Diccionario_molec_2021.csv"))
+Dicc22 <- read_csv(here("data", "Diccionario_molec_2022.csv"))
+Dicc23 <- read_csv(here("data", "Diccionario_molec_2023.csv"))
+Dicc24 <- read_csv(here("data", "Diccionario_molec_2024.csv"))
+
 ```
 
 El diccionario indica qué significan las variables en el contexto del problema, pero no a qué equivalen sus categorías. Eso se debe leer en el archivo de descriptor de las preguntas y en el cuestionario.
@@ -47,6 +53,11 @@ El diccionario indica qué significan las variables en el contexto del problema,
 
 ```{r}
 summary(M19)
+summary(M20)
+summary(M21)
+summary(M22)
+summary(M23)
+summary(M24)
 ```
 
 Aunque en la mayor parte de las variables, las medidas calculadas (media, mediana, mínimo, máximo), en muchas no tienen sentido porque son categóricas. El summary permite ver si la variable tiene datos faltantes (NA´s), por ejemplo, la variable anio tiene valores faltantes.
@@ -56,8 +67,13 @@ Aunque en la mayor parte de las variables, las medidas calculadas (media, median
 Por ejemplo, si me interesa analizar las variables 3 a 34 (se revisa en la base de datos el número de columna que tiene la variable de interés):
 
 ```{r}
-M19selec <- M19[3:34]
-M20selec <- M20[3:34]
+M19selec <- M19[,c(2,10:16,18,19,27,28,69,70,104,105)]
+M20selec <- M20[,c(9,15:21,23,24,32,33,74,75,11,10)]
+M21selec <- M21[,c(9,15:21,23,24,32,33,74,75,11,10)]
+M22selec <- M22[,c(9,15:21,23,24,32,33,74,75,11,10)]
+M23selec <- M23[,c(9,15:21,23,24,32,33,74,75,11,10)]
+M24selec <- M24[,c(9,15:21,23,24,32,33,74,75,11,10)]
+
 ```
 
 ## Datos perdidos o faltantes
@@ -65,7 +81,13 @@ M20selec <- M20[3:34]
 Visualizo si las variables de interés tienen datos perdidos:
 
 ```{r}
+summary(M19selec)
 summary(M20selec)
+summary(M21selec)
+summary(M22selec)
+summary(M23selec)
+summary(M24selec)
+
 ```
 
 La variable anio tiene 39 datos faltantes. Anio está en la columna 10 en la base de datos de las variables de interés.
@@ -73,19 +95,17 @@ La variable anio tiene 39 datos faltantes. Anio está en la columna 10 en la bas
 Para calcular el porcentaje de datos faltantes que tiene y que se los vamos a quitar: 
 
 ```{r}
-sum(is.na(M20selec[, 10])) / length(M20selec[, 10])
+#sum(is.na(M20selec[, 10])) / length(M20selec[, 10])
 ```
 
 ## Para quitar los NA's
 
 ```{r}
-M20selec <- na.omit(M20selec)
-summary(M20selec)
+#M20selec <- na.omit(M20selec)
+#summary(M20selec)
 ```
 
 Se verifica que ya no hay datos perdidos en mi data set de interés.
-
-prueba
 
 
 
