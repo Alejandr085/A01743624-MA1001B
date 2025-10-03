@@ -92,3 +92,4 @@ No se presentan datos invalidos en las variables seleccionadas.
 ```
 
 Modificación
+Oscar
