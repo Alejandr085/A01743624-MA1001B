@@ -1,16 +1,81 @@
 ---
-title: "Etapa 1. El contexto"
-author: "Elías Alejandro Corral Rodríguez,Jesús Oscar Flores Cota,Marcelo Balderas Gómez,Omar Gael Arzaga Chaparro,Adrían David Páez Parra"
-date: today
-format:
-  docx:
-    toc: false          # Do not include table of contents
+title: "Etapa 1: El contexto y Etapa 2: Comprensión y Preparacion de Datos"
+author:
+  - name: "Elías Alejandro Corral Rodríguez"
+  - name: "Jesús Oscar Flores Cota"
+  - name: "Marcelo Balderas Gómez"
+  - name: "Omar Gael Arzaga Chaparro"
+  - name: "Adrián David Páez Parra"
+  
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
 
-execute:
-  echo: true          # Show code in the output document
+output:
+  word_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
-# Exploración de la base de datos
+# Etapa 1: El contexto y el objetivo
+
+## Revisión Bibliográfica
+
+El estudio de la lectura en México es fundamental para comprender los hábitos culturales de la población y su capacidad de ejercer ciudadanía crítica. La lectura no solo es un medio de entretenimiento, sino también una herramienta clave para la formación académica, la transmisión de conocimiento y el desarrollo del pensamiento crítico. Medir la lectura de manera sistemática permite identificar tendencias, rezagos y oportunidades, tanto en el ámbito educativo como en el cultural, y ofrece información valiosa para el diseño de estrategias que busquen mejorar la participación ciudadana.
+
+Uno de los principales instrumentos para la medición de estadísticas relacionadas a la lectura en el país es el Módulo sobre Lectura (MOLEC), administrado por el Instituto Nacional de Estadística y Geografía (INEGI). Este módulo, creado en 2015, tiene como objetivo generar información estadística sobre el comportamiento lector de la población que reside en México de 18 y más años de edad, con la finalidad de proporcionar datos útiles para conocer las características de la lectura de la citada población y proporcionar elementos para el fomento de la lectura (INEGI, s.f.). Sus indicadores abarcan el porcentaje de lectores, materiales preferidos, tiempo dedicado a leer y motivos para leer o no. Dichos resultados se han convertido en una referencia obligada para entender la evolución de los hábitos lectores y comparar los cambios a lo largo de los años.
+
+A nivel regional, el Centro Regional para el Fomento del Libro en América Latina y el Caribe (CERLALC) señala problemáticas comunes en Iberoamérica: baja inversión en bibliotecas públicas, concentración de librerías en grandes ciudades, desigualdad en el acceso y escasa evaluación de los programas de fomento. Estas condiciones explican por qué los niveles de lectura se mantienen bajos a pesar de las campañas de promoción y de los esfuerzos que buscan acercar los libros a distintos sectores de la población. El caso de México, por tanto, no es aislado, sino que forma parte de una realidad compartida con otros países de la región.
+
+En el ámbito académico, el Tecnológico de Monterrey ha desarrollado programas como “Pasión por la Lectura". Estas iniciativas buscan crear comunidades lectoras, promover la literatura como vehículo de pensamiento crítico y difundir la producción académica y cultural (Tecnológico de Monterrey, 2024). Asimismo, la Feria Internacional del Libro Monterrey se ha consolidado como un espacio clave para el fomento de la lectura, reuniendo editoriales, universidades e instituciones culturales en un evento que impulsa la interacción social en torno al libro. Estos esfuerzos, tanto institucionales como culturales, muestran que el fomento a la lectura puede construirse desde diferentes frentes y no depende únicamente de las encuestas o de las políticas oficiales.
+
+Sin embargo, la medición de la lectura enfrenta retos relacionados con su metodología. Entre ellos, el sesgo por autoevaluación, ya que las personas pueden tender a exagerar sus hábitos lectores. De igual manera, existe cierta dificultad de contabilizar de manera precisa la lectura digital, que incluye redes sociales, blogs y artículos en línea, los cuales forman parte creciente de los hábitos de consumo de información en la actualidad. Además, existe la limitación de la comparabilidad internacional, pues mientras el MOLEC se centra en frecuencia y materiales, otros países consideran también la comprensión lectora y el impacto en la vida cotidiana, lo que abre la puerta a visiones más completas del fenómeno.
+
+La motivación original del INEGI al diseñar el MOLEC fue generar información confiable para llevar un registro contable sobre hábitos de lectura en México con el fin de visualizar áreas de mejora en este aspecto, y poder destinar políticas públicas para fomentar la lectura y desarrollar la educación integral. No obstante, persiste la duda de si los resultados han tenido un impacto significativo en los programas de fomento y en la asignación de recursos. El vínculo entre la medición y la política pública sigue siendo un tema abierto a la investigación y al debate académico, lo que demuestra que aún queda trabajo por hacer en la conexión entre los datos generados y las acciones que deberían derivar de ellos.
+
+En conclusión, la literatura revisada permite identificar cuatro ejes principales: (1) los niveles de lectura en México son bajos y muestran una tendencia decreciente; (2) la comprensión lectora de los jóvenes está por debajo del promedio internacional; (3) los problemas estructurales en América Latina limitan el acceso equitativo a la lectura; y (4) las iniciativas académicas y culturales, como las del Tecnológico de Monterrey y la FIL Monterrey, representan esfuerzos valiosos que deben analizarse en términos de su verdadero impacto en los hábitos lectores. Estas conclusiones invitan a reflexionar no solo sobre la situación actual, sino también sobre los retos futuros que enfrenta el país para fortalecer la cultura lectora.
+
+## Objetivo de Investigación
+
+La encuesta MOLEC es una iniciativa realizada desde 2015 por el INEGI con el fin de recopilar información de los lectores mexicanos de 18 años y más. En esta, se recopila información no solo de cuantas personas leen y que leen, sino también que materiales prefieren, ya sean revistas, libros, periódicos o medios digitales, y si estos los adquieren comprandolos o a través de otros medios (bibliotecas locales, descargas en línea, etc.). Esto nos guía a responder la incógnita planteada: ¿Están las personas dispuestas a pagar por sus lecturas? Y analizar si esto se relaciona con la edad o con el tipo de material a adquirir.
+
+La pregunta en cuestion nos puede llegar a abordar una doble problemática: La razón por la que el nivel de lectura en el país se encuentra en decadencia en los años recientes y su relación con la barrera económica impuesta por temas modernos como la evolución de la lectura a un nuevo formato digital y los cambios de la fomentación de lectura en todas las edades tomando en cuenta la percepción pública del aspecto monetario relacionado.
+
+Guiándonos con la pregunta de investigación, la información del dataset que nos ayudará a responder las preguntas es la siguiente:
+
+-   La disposición a pagar por los materiales de lectura: Determinar la relación entre la intención de querer leer y la adquisición de material de lectura, esto igual ayuda a saber si el acceso medios de lectura gratuitos tienen un impacto en el nivel lector
+
+-   La relación entre la edad y los hábitos de lectura: Nos permite conocer si la edad se relaciona con la disposición a pagar y el efecto en nivel de lectura por edades.
+
+-   Preferencias en formato de material leído: Nos permite conocer los medios de lectura más populares y como las preferencias tienen efecto en la disposición a pagar por ellos.
+
+Motivo por el que elegimos esta pregunta es por la gran variedad de perspectivas desde la cual podemos indagar en ella, así como la posibilidad de comprender la valoración social y cultural que le asignamos a la lectura en méxico. Algunas de las perspectivas o formas de impacto social a través de las cuales abordaremos la incógnita son:
+
+-   Impacto Cultural y Educativo
+
+Uno de los indicadores más importantes del desarrollo cultural de una sociedad es la lectura, por lo que analizar la disposición de las personas a pagar por esta, nos permitirá entender si es vista como un bien de consumo o como una inversión educativa. Cuando las personas dejan de pagar por libros y dependen del acceso gratuito para acceder a estos, se ve reflejada la poca importancia y valor cultural que se le da a la lectura.
+
+-   Acceso y Desigualdad
+
+Indagar la disposición de las personas a pagar por lectura nos puede llevar a conocer más acerca de los motivos, pudiendo revelar brechas socioeconómicas, como es el caso de ciertos sectores de la población con bajo nivel socioeconómico  que, al no poder pagar por libros, se ven limitados al acceso gratuito de estos contenidos, limitando su libre acceso a la educación y su desarrollo como personas. Esto podría reflejar un problema claro que, al verse en situaciones de precariedad, las personas descartan casi completamente o ven como innecesarios gastos en material de lectura, siendo que, en otros estratos sociales, estos podrían ser vistos como una inversión educativa o como algo de mayor importancia.
+
+Esta información va a poder ayudar a establecer políticas públicas de lectura que ayuden a que esta no dependa del nivel socioeconómico y que garanticen el derecho a la educación y al libre acceso a la educación de todas las personas.
+
+-   Industria Editorial y Digital
+
+La pregunta que elegimos no solamente abarca aspectos sociales, sino también económicos. Saber qué tan dispuesta está la gente a pagar por libros así como si la gente prefiere materiales de lectura físicos o digital ayuda a orientar a la industria en sus estrategias de distribución y sus precios. Esto les permitirá saber qué tan sostenible es el mercado de la lectura en México. 
+
+-   Brecha Generacional
+
+Responder la pregunta y el cómo se relaciona el factor de la edad con la disposición a comprar libros, nos ayuda a ver reflejadas las preferencias de personas de distintas edades, lo que podría mostrarnos una brecha o discrepancia en cuanto a sus preferencias. Puede ser que las personas jóvenes se inclinen más por materiales de lectura digital, mientras que las personas mayores sigan prefiriendo medios físicos, tales como el periodico, revistas o libros.
+
+Esto también podría reflejar que tanta importancia se le da a la lectura como valor cultural a través del tiempo y si esta ha cambiado con el pasar de los años. Puede ser que las personas mayores utilizan más su tiempo en la lectura o que por el contrario, con el fácil acceso a medios digitales, los jóvenes la priorizan más.
+
+## Descripción General del Dataset
+
+### 1. Exploración de la base de datos
 
 ```{r}
 library(tidyverse)
@@ -23,60 +88,85 @@ M22 <- read_csv(here("data", "Datos_molec_2022.csv"))
 M23 <- read_csv(here("data", "Datos_molec_2023.csv"))
 M24 <- read_csv(here("data", "Datos_molec_2024.csv"))
 
-str(M19)
-str(M20)
-str(M21)
-str(M22)
-str(M23)
-str(M24)
+#str(M19)
+#str(M20)
+#str(M21)
+#str(M22)
+#str(M23)
+#str(M24)
 ```
 
-## Diccionarios
+Se dispone de dos conjuntos de datos correspondientes a los años 2019 hasta 2024, usaremos todas las bases de datos para realizar un análisis más completo considerando diferentes años.
+
+-   Registros: De 1948 a 2016 filas por año (**2019**: 1,980; **2020**: 2,010; **2021**: 1948; **2022**: 2016; **2023**: 1996; **2024**: 2016).
+
+-   Variables: 108 columnas en cada dataset.
+
+El objetivo de la investigación es analizar la disposición a pagar por materiales de lectura, su relación con la edad y los tipos de materiales más consumidos.
+
+### 2. Variables Clave Seleccionadas para la Investigación
+
+|  |  |  |  |
+|------------------|------------------|------------------|------------------|
+| **Variable** | **Tipo** | **Descripción y Valores** | **Justificación** |
+| Edad (edad) | Cuantitativa continua | Edad del encuestado (rango: 18 a 95 años). | Analizar la relación entre la edad y la disposición a pagar. |
+| Tipo de Material (p1...) | Categórica | Tipo de material leído: 1=Libros, 2=Revistas, 3=Periódicos, 4=Web/foros/blogs, 5=Comics | Identificar preferencias y vincularlas con disposición a pagar. |
+| Compra de Material (p7) | Categórica | Cómo obtuvo el material: 1=Comprado, 2=Regalado, 3=Descargado gratis | Determinar intención directa de gasto en lectura. |
+| Gasto en Material (p7a) | Cuantitativa continua | Monto gastado en pesos mexicanos. | Cuantificar inversión y variación entre grupos de edad. |
+| Motivo de Lectura (p5...) | Categórica | Razón principal: 1=Trabajo, 2=Estudio, 3=Cultura general, 4=Entretenimiento, 5=Religión | Vincular motivos con voluntad de pagar. |
+| Frecuencia Lectura (p24) | Categórica | Frecuencia: 1=Diario, 2=Semanal, 3=Mensual, 4=Trimestral, 5=Ocasional | Evaluar correlación entre hábito lector y disposición a invertir. |
+
+#### Diccionarios
 
 ```{r}
-Dicc19 <- read_csv(here("data", "Diccionario_molec_2019.csv"))
-Dicc20 <- read_csv(here("data", "Diccionario_molec_2020.csv"))
-Dicc21 <- read_csv(here("data", "Diccionario_molec_2021.csv"))
-Dicc22 <- read_csv(here("data", "Diccionario_molec_2022.csv"))
-Dicc23 <- read_csv(here("data", "Diccionario_molec_2023.csv"))
-Dicc24 <- read_csv(here("data", "Diccionario_molec_2024.csv"))
-
+#Dicc19 <- read_csv(here("data", "Diccionario_molec_2019.csv"))
+#Dicc20 <- read_csv(here("data", "Diccionario_molec_2020.csv"))
+#Dicc21 <- read_csv(here("data", "Diccionario_molec_2021.csv"))
+#Dicc22 <- read_csv(here("data", "Diccionario_molec_2022.csv"))
+#Dicc23 <- read_csv(here("data", "Diccionario_molec_2023.csv"))
+#Dicc24 <- read_csv(here("data", "Diccionario_molec_2024.csv"))
 ```
 
-## Resumen de las variables
+#### Resumen de las variables
 
 ```{r}
-summary(M19)
-summary(M20)
-summary(M21)
-summary(M22)
-summary(M23)
-summary(M24)
+#summary(M19)
+#summary(M20)
+#summary(M21)
+#summary(M22)
+#summary(M23)
+#summary(M24)
 ```
 
-# Selección de las variables
+#### Selección de las variables
 
 ```{r}
-M19selec <- M19[,c(2,10:16,18,19,27,28,69,70,104,105)]
-M20selec <- M20[,c(9,15:21,23,24,32,33,74,75,11,10)]
-M21selec <- M21[,c(9,15:21,23,24,32,33,74,75,11,10)]
-M22selec <- M22[,c(9,15:21,23,24,32,33,74,75,11,10)]
-M23selec <- M23[,c(9,15:21,23,24,32,33,74,75,11,10)]
-M24selec <- M24[,c(9,15:21,23,24,32,33,74,75,11,10)]
-
+M19selec <- M19[,c(2,10:16,18,27,28,69,70,104,105)]
+M20selec <- M20[,c(9,15:21,23,32,33,74,75,11,10)]
+M21selec <- M21[,c(9,15:21,23,32,33,74,75,11,10)]
+M22selec <- M22[,c(9,15:21,23,32,33,74,75,11,10)]
+M23selec <- M23[,c(9,15:21,23,32,33,74,75,11,10)]
+M24selec <- M24[,c(9,15:21,23,32,33,74,75,11,10)]
 ```
 
-## Datos perdidos o faltantes
+Archivo Rmd con las variables seleccionadas en cada base de datos: <https://github.com/Alejandr085/A01743624-MA1001B>
+
+### 3. Consideraciones sobre Calidad de Datos
+
+#### Datos perdidos o faltantes
 
 ```{r}
-summary(M19selec)
-summary(M20selec)
-summary(M21selec)
-summary(M22selec)
-summary(M23selec)
-summary(M24selec)
-
+#summary(M19selec)
+#summary(M20selec)
+#summary(M21selec)
+#summary(M22selec)
+#summary(M23selec)
+#summary(M24selec)
 ```
+
+-   Datos faltantes en columnas con sufijo "\_Xesp" (como p5_6esp, p11_6esp), que corresponden a respuestas abiertas.
+
+-   Las columnas l_formato, r_formato y p_formato también presentan valores vacíos, es posible interpretar esos resultados vacíos como "No ha leído" o "No aplica".
 
 No se presentan datos invalidos en las variables seleccionadas.
 
@@ -84,12 +174,332 @@ No se presentan datos invalidos en las variables seleccionadas.
 #sum(is.na(M20selec[, 10])) / length(M20selec[, 10])
 ```
 
-## Para quitar los NA's
+#### Para quitar los NA's
 
 ```{r}
 #M20selec <- na.omit(M20selec)
 #summary(M20selec)
 ```
 
-Modificación
-Oscar
+#### Generar base de datos con intervalo de tiempo y variables seleccionadas
+
+```{r}
+df = rbind(M19selec, M20selec, M21selec, M22selec, M23selec, M24selec)
+df
+```
+
+### 4. Estrategia de Análisis
+
+-   Análisis Descriptivo: Distribución de edad, materiales más leídos, motivos predominantes, hábitos de compra y gasto.
+
+-   Análisis Bivariado:
+
+    -   Edad vs. Gasto (p7a) y Compra (p7)
+
+    -   Tipo de Material vs. Motivo de Lectura vs. Compra (p7)
+
+    -   Frecuencia de Lectura vs. Gasto promedio
+
+-   Análisis Integrado: Responder la pregunta central: ¿Quiénes (por edad), qué (tipo de material) y por qué (motivo) están más dispuestos a pagar por sus lecturas?
+
+# Etapa 2: Comprensión y Preparacion de los Datos
+
+## 1. Verificar la calidad de los datos
+
+### B. Indica la dimension del dataset. Indica la cantidad de registros y columnas.
+
+```{r}
+dim(df)
+```
+
+Juntamos todos los registros en un mismo archivo con las siguientes dimensiones:
+
+-   Registros: 11966.
+
+-   Variables: 15 columnas en cada dataset.
+
+### C. Detecta datos faltantes, erróneos, duplicados, errores de escritura, limpia la base de datos y guarda la base limpia con la instrucción write.csv
+
+```{r}
+# Revisar cantidad de NA por variable
+colSums(is.na(df))
+
+# Verificar duplicados
+sum(duplicated(df))
+
+# Eliminar NA's (solo si no son relevantes o no hay otra opción)
+df_limpio <- na.omit(df)
+
+# O puedes usar imputación si quieres conservar filas:
+# df$p7a[is.na(df$p7a)] <- median(df$p7a, na.rm = TRUE)
+
+# Guardar base limpia
+
+df_limpio <- df[!duplicated(df), ]
+df_limpio
+
+write.csv(df_limpio, "df_limpio.csv", row.names = FALSE)
+
+```
+
+Eliminamos 3101 filas repetidas para facilitar la iterpretación de los datos. Los datos representaban una proporción mínima en comparación al total de registros. Por esta razón, se decidió eliminarlos, ya que su exclusión no afecta de gran medida al informe.
+
+### D. Describe claramente cada una de las variables, incluyendo su nombre, descripción, tipo (categórico/Numérico) y valores posibles que puede tomar y el porcentaje de valores nulos.
+
+#### **Variables y principales características estadísticas**
+
+Con el propósito de analizar la disposición a pagar por materiales de lectura en México, se seleccionan variables provenientes del Módulo sobre Lectura (MOLEC) del INEGI, las cuales permiten identificar comportamientos de pago, tipo de material consumido, gasto declarado y factores sociodemográficos relacionados con los hábitos lectores.
+
+#### **Variable dependiente**
+
+Disposición a pagar por materiales de lectura (p7)
+
+-   Tipo: Categórica dicotómica.
+
+-   Descripción: Indica la forma principal en que la persona obtiene los materiales de lectura.
+
+-   Codificación:
+
+    -   1 = Compra (sí paga).
+
+    -   2 = Regalo, 3 = Préstamo, 4 = Descarga gratuita (no paga).
+
+-   Uso analítico: Se recodifica a una variable binaria:\
+    ![](data:image/png;base64,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)
+
+-   Características estadísticas: Se espera una distribución sesgada hacia la categoría “no paga”, ya que los datos MOLEC muestran que la mayoría de las lecturas se obtienen gratuitamente.
+
+#### **Variable complementaria de gasto**
+
+Monto de gasto mensual o reciente (p7_3)
+
+-   Tipo: Cuantitativa continua.
+
+-   Unidad: Pesos mexicanos.
+
+-   Descripción: Reporta el gasto que realiza la persona en la compra de materiales de lectura.
+
+-   Observaciones:
+
+    -   Solo aplica a quienes declaran haber pagado (p7 = 3).
+
+    -   Presenta alta asimetría positiva y posibles valores extremos.
+
+    -   Se recomienda describirla mediante mediana y rango intercuartílico.
+
+#### **Variable explicativa principal**
+
+Tipo de material leído (p1)
+
+-   Tipo: Categórica nominal.
+
+-   Categorías: Libros, revistas, periódicos, historietas, páginas de Internet, foros o blogs.
+
+-   Uso analítico: Permite comparar la disposición a pagar según el tipo de material.
+
+-   Características estadísticas: Se espera mayor concentración en libros y páginas web, con mayor tendencia al pago en los materiales impresos.
+
+#### **Variables sociodemográficas de control**
+
+Edad (r_edad)
+
+-   Tipo: Cuantitativa discreta.
+
+-   Uso: Se agrupa en rangos generacionales (18–29, 30–44, 45–59 y 60+ años).
+
+-   Características estadísticas: Promedio cercano a 40 años; posible mayor disposición a pagar entre adultos jóvenes.
+
+Sexo (r_sexo)
+
+-   Tipo: Categórica binaria (1 = hombre, 2 = mujer).
+
+-   Uso: Analizar diferencias de comportamiento lector y gasto entre géneros.
+
+-   Características estadísticas: En MOLEC predomina ligeramente la participación femenina.
+
+Nivel de escolaridad (r_nivelest)
+
+-   Tipo: Categórica ordinal.
+
+-   Uso: Examinar si el nivel educativo influye en la probabilidad de pago.
+
+-   Características estadísticas: Tendencia positiva: a mayor nivel educativo, mayor gasto en lectura.
+
+#### **Variables complementarias del hábito lector**
+
+Frecuencia de lectura (p5)
+
+-   Tipo: Ordinal (desde “todos los días” hasta “menos de una vez al año”).
+
+-   Uso: Evaluar si la frecuencia se relaciona con la disposición a pagar.
+
+-   Características estadísticas: Los lectores frecuentes podrían mostrar mayor probabilidad de compra.
+
+Motivo principal de lectura (p6)
+
+-   Tipo: Categórica nominal.
+
+-   Categorías: Placer, estudio, trabajo, información, religión u otro.
+
+-   Uso: Contextualiza el comportamiento de pago según la finalidad de la lectura.
+
+## 2. Comprensión de los datos (Análisis descriptivo y su interpretación, incluye gráficas y medidas descriptivas)
+
+### A. Exploracion de datos
+
+1.  Calcula medidas estadísticas
+
+    -   Variables cuantitativas
+
+        -   Medidas de tendencia central: media, mediana y rango medio.
+
+        -   Medidas de dispersión: desviación estándar, coeficiente de variación.
+
+        -   Medidas de posición: cuartiles
+
+        -   Medidas de forma: sesgo, curtosis
+
+        ```{r}
+        # Cargar librerías necesarias
+        library(moments)
+        library(ggplot2)
+
+        # Variable cuantitativa: p7_3
+        summary(df_limpio$p7_3)
+        sd(df_limpio$p7_3, na.rm = TRUE)
+        cv_p7a <- sd(df_limpio$p7_3, na.rm = TRUE) / mean(df_limpio$p7_3, na.rm = TRUE)
+        quantile(df_limpio$p7_3, probs = c(0.25, 0.5, 0.75), na.rm = TRUE)
+        skewness(df_limpio$p7_3, na.rm = TRUE)
+        kurtosis(df_limpio$p7_3, na.rm = TRUE)
+
+        # Variable cuantitativa: edad
+        summary(df_limpio$edad)
+        sd_edad <- sd(df_limpio$edad, na.rm = TRUE)
+        cv_edad <- sd_edad / mean(df_limpio$edad, na.rm = TRUE)
+        quantiles_edad <- quantile(df_limpio$edad, probs = c(0.25, 0.5, 0.75), na.rm = TRUE)
+        skew_edad <- skewness(df_limpio$edad, na.rm = TRUE)
+        kurt_edad <- kurtosis(df_limpio$edad, na.rm = TRUE)
+
+        ```
+
+    -   Variables cualitativas
+
+        -   Tabla de distribución de frecuencia
+
+        -   Para escala ordinal: Mediana
+
+        ```{r}
+        # Frecuencia absoluta
+        frecuencia_absoluta <- table(df_limpio$sexo)
+        # Frecuencia relativa (porcentajes)
+        frecuencia_relativa <- prop.table(frecuencia_absoluta) * 100
+
+        ```
+
+2.  Explora los datos usando herramientas de visualización
+
+    -   Variables cuantitativas:
+
+        -   Medidas de posición no-central: cuartiles, outlier (valores atípicos) que se visualizan en el boxplots
+
+        -   Análisis de distribución de los datos (Histogramas). Identificar si tiene forma simétrica o asimétrica y revisar entre qué valores varían los datos, en donde se concentran más los datos
+
+        -   Análisis de correlación  de los datos para ver si dos variables cuantitativas están relacionadas linealmente entre sí
+
+    -   Variables categóricas
+
+        -   Distribución de los datos (diagramas de barras, diagramas de pastel)
+
+```{r}
+pie(frecuencia_relativa, main="Gráfica de pastel - Frecuencia relativa", col=c("lightblue","pink"), labels = paste(names(frecuencia_relativa), round(frecuencia_relativa, 1), "%"))
+
+
+datos_gasto <- df_limpio %>%
+  filter(p7_3 > 0 & p7_3 < 1000) # Filtrar extremos (>1000)
+
+# Histograma
+ggplot(datos_gasto, aes(x = p7_3)) +
+  geom_histogram(binwidth = 20, fill = "#2C3E50", color = "white", alpha = 0.8) +
+  labs(
+    title = "Distribución del Gasto en Materiales de Lectura",
+    x = "Gasto (pesos mexicanos)",
+    y = "Frecuencia"
+  ) +
+  theme_minimal()
+
+library(ggplot2)
+library(dplyr)
+
+# 1. Crear grupos de edad
+df_limpio <- df_limpio %>%
+  mutate(grupo_edad = case_when(
+    edad >= 18 & edad <= 24 ~ "18–24",
+    edad >= 25 & edad <= 29 ~ "25–29",
+    edad >= 30 & edad <= 44 ~ "30–44",
+    edad >= 45 & edad <= 59 ~ "45–59",
+    edad >= 60 ~ "60+"
+  ))
+
+# 2. Recodificar variable de compra (p7)
+df_limpio <- df_limpio %>%
+  mutate(pago = case_when(
+    p7 == 1 ~ "Paga",
+    TRUE ~ "No paga"
+  ))
+
+# 3. Tabla resumen
+tabla_pago_edad <- df_limpio %>%
+  group_by(grupo_edad, pago) %>%
+  summarise(conteo = n()) %>%
+  mutate(porcentaje = round(100 * conteo / sum(conteo), 1))
+
+# 4. Gráfico de barras apiladas
+ggplot(tabla_pago_edad, aes(x = grupo_edad, y = porcentaje, fill = pago)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Disposición a pagar por materiales de lectura según grupo de edad",
+    x = "Grupo de Edad",
+    y = "Porcentaje",
+    fill = "¿Paga por leer?"
+  ) +
+  scale_fill_manual(values = c("Paga" = "#2980B9", "No paga" = "#BDC3C7")) +
+  theme_minimal()
+
+
+
+```
+
+### B. Vincula los datos categóricos con los numéricos de acuerdo a tu objetivo:
+
+1.  Calcula las medidas de las variables cuantitativas por categoría de alguna variable categórica de interés
+
+2.  Elabora gráficos de caja y bigote de las variables cuantitativas por categoría de alguna variable categórica de interés
+
+3.  Elabora gráficos comparativos por años si tu objetivo es comparar años
+
+## Referencias
+
+Camacho-Quiroz, R. M. (2013). La lectura en México, un problema multifactorial. Redalyc.org. https://www.redalyc.org/articulo.oa?id=28128741003
+
+Leyva, E. M. R., & Ávila, B. a. P. (2021). Lectura en México. Revista Panamericana De Comunicación, 2, 11–21. https://doi.org/10.21555/rpc.vi2.2432
+
+Gutiérrez, V., & Loaiza, O. (2021). La lectura en México: Tendencias, desafíos y oportunidades para la formación de lectores. Revista Mexicana de Investigación Educativa, 26(91), 113–132.
+
+Alejandro, M. J., & Alejandro, M. J. (n.d.). Sobre lectura, hábito lector y sistema educativo. https://www.scielo.org.mx/scielo.php?pid=S0185-26982017000100003&script=sci_arttext
+
+Zaidín, C. C. J. X. (n.d.). Tecnología y lectura: el impacto del mundo digital en la comprensión lectora. Juan XXIII Zaidín. https://juanxxiiizaidin.com/blog/reflexiones/tecnologia-y-lectura-impacto-digital-comprension-lectora
+
+De Estadística Y, I. N. (n.d.). Módulo sobre Lectura (MOLEC). https://www.inegi.org.mx/programas/molec/
+
+Student performance (PISA). (n.d.). OECD. https://www.oecd.org/en/topics/student-performance-pisa.html
+
+PISA 2022 results (Volume I and II) - Country notes: Mexico. (2023, December 5). OECD. https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/mexico_519eaf88-en.html
+s
+Tecnológico de Monterrey. (n.d.). ¿Conoces el programa Pasión por la lectura? Tecnológico De Monterrey. https://tec.mx/es/pasion-por-la-lectura/conoces-el-programa-pasion-por-la-lectura
+
+CERLALC. (2018). El Espacio Iberoamericano del Libro 2018. Recuperado 1 de octubre de 2025, de https://cerlalc.org/wp-content/uploads/2019/04/EIL2018_2.pdf
+
+
+
+
+
