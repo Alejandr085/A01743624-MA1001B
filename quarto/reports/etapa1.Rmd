@@ -15,6 +15,7 @@ output:
     toc_depth: 2
     number_sections: true
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -107,7 +108,7 @@ El objetivo de la investigación es analizar la disposición a pagar por materia
 ### 2. Variables Clave Seleccionadas para la Investigación
 
 |  |  |  |  |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | **Variable** | **Tipo** | **Descripción y Valores** | **Justificación** |
 | Edad (edad) | Cuantitativa continua | Edad del encuestado (rango: 18 a 95 años). | Analizar la relación entre la edad y la disposición a pagar. |
 | Tipo de Material (p1...) | Categórica | Tipo de material leído: 1=Libros, 2=Revistas, 3=Periódicos, 4=Web/foros/blogs, 5=Comics | Identificar preferencias y vincularlas con disposición a pagar. |
@@ -479,27 +480,20 @@ ggplot(tabla_pago_edad, aes(x = grupo_edad, y = porcentaje, fill = pago)) +
 
 ## Referencias
 
-Camacho-Quiroz, R. M. (2013). La lectura en México, un problema multifactorial. Redalyc.org. https://www.redalyc.org/articulo.oa?id=28128741003
+Camacho-Quiroz, R. M. (2013). La lectura en México, un problema multifactorial. Redalyc.org. <https://www.redalyc.org/articulo.oa?id=28128741003>
 
-Leyva, E. M. R., & Ávila, B. a. P. (2021). Lectura en México. Revista Panamericana De Comunicación, 2, 11–21. https://doi.org/10.21555/rpc.vi2.2432
+Leyva, E. M. R., & Ávila, B. a. P. (2021). Lectura en México. Revista Panamericana De Comunicación, 2, 11–21. <https://doi.org/10.21555/rpc.vi2.2432>
 
 Gutiérrez, V., & Loaiza, O. (2021). La lectura en México: Tendencias, desafíos y oportunidades para la formación de lectores. Revista Mexicana de Investigación Educativa, 26(91), 113–132.
 
-Alejandro, M. J., & Alejandro, M. J. (n.d.). Sobre lectura, hábito lector y sistema educativo. https://www.scielo.org.mx/scielo.php?pid=S0185-26982017000100003&script=sci_arttext
+Alejandro, M. J., & Alejandro, M. J. (n.d.). Sobre lectura, hábito lector y sistema educativo. <https://www.scielo.org.mx/scielo.php?pid=S0185-26982017000100003&script=sci_arttext>
 
-Zaidín, C. C. J. X. (n.d.). Tecnología y lectura: el impacto del mundo digital en la comprensión lectora. Juan XXIII Zaidín. https://juanxxiiizaidin.com/blog/reflexiones/tecnologia-y-lectura-impacto-digital-comprension-lectora
+Zaidín, C. C. J. X. (n.d.). Tecnología y lectura: el impacto del mundo digital en la comprensión lectora. Juan XXIII Zaidín. <https://juanxxiiizaidin.com/blog/reflexiones/tecnologia-y-lectura-impacto-digital-comprension-lectora>
 
-De Estadística Y, I. N. (n.d.). Módulo sobre Lectura (MOLEC). https://www.inegi.org.mx/programas/molec/
+De Estadística Y, I. N. (n.d.). Módulo sobre Lectura (MOLEC). <https://www.inegi.org.mx/programas/molec/>
 
-Student performance (PISA). (n.d.). OECD. https://www.oecd.org/en/topics/student-performance-pisa.html
+Student performance (PISA). (n.d.). OECD. <https://www.oecd.org/en/topics/student-performance-pisa.html>
 
-PISA 2022 results (Volume I and II) - Country notes: Mexico. (2023, December 5). OECD. https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/mexico_519eaf88-en.html
-s
-Tecnológico de Monterrey. (n.d.). ¿Conoces el programa Pasión por la lectura? Tecnológico De Monterrey. https://tec.mx/es/pasion-por-la-lectura/conoces-el-programa-pasion-por-la-lectura
+PISA 2022 results (Volume I and II) - Country notes: Mexico. (2023, December 5). OECD. <https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/mexico_519eaf88-en.html> s Tecnológico de Monterrey. (n.d.). ¿Conoces el programa Pasión por la lectura? Tecnológico De Monterrey. <https://tec.mx/es/pasion-por-la-lectura/conoces-el-programa-pasion-por-la-lectura>
 
-CERLALC. (2018). El Espacio Iberoamericano del Libro 2018. Recuperado 1 de octubre de 2025, de https://cerlalc.org/wp-content/uploads/2019/04/EIL2018_2.pdf
-
-
-
-
-
+CERLALC. (2018). El Espacio Iberoamericano del Libro 2018. Recuperado 1 de octubre de 2025, de <https://cerlalc.org/wp-content/uploads/2019/04/EIL2018_2.pdf>
