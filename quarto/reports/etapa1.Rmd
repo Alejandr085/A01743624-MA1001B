@@ -182,6 +182,7 @@ No se presentan datos invalidos en las variables seleccionadas.
 #summary(M20selec)
 ```
 
+<<<<<<< HEAD
 #### Generar base de datos con intervalo de tiempo y variables seleccionadas
 
 ```{r}
@@ -497,3 +498,8 @@ Student performance (PISA). (n.d.). OECD. <https://www.oecd.org/en/topics/studen
 PISA 2022 results (Volume I and II) - Country notes: Mexico. (2023, December 5). OECD. <https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/mexico_519eaf88-en.html> s Tecnológico de Monterrey. (n.d.). ¿Conoces el programa Pasión por la lectura? Tecnológico De Monterrey. <https://tec.mx/es/pasion-por-la-lectura/conoces-el-programa-pasion-por-la-lectura>
 
 CERLALC. (2018). El Espacio Iberoamericano del Libro 2018. Recuperado 1 de octubre de 2025, de <https://cerlalc.org/wp-content/uploads/2019/04/EIL2018_2.pdf>
+=======
+Modificación
+Oscar
+Omar
+>>>>>>> a5e2a5de27e59a8c8c65405e794e1b548489cac2
