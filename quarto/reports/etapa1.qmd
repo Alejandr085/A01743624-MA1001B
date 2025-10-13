@@ -90,20 +90,13 @@ No se presentan datos invalidos en las variables seleccionadas.
 #M20selec <- na.omit(M20selec)
 #summary(M20selec)
 ```
-<<<<<<< HEAD
-
 Se verifica que ya no hay datos perdidos en mi data set de interés.
 
 prueba
 
 prueba
 
-<<<<<<< HEAD
 prueba
 
 
-=======
 
-=======
->>>>>>> a29551b9cd7fcf32a2d9effa3ef19b8868020890
->>>>>>> f1ed62a237abfa169fdae33c946668ae892125d3
