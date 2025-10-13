@@ -108,7 +108,7 @@ El objetivo de la investigación es analizar la disposición a pagar por materia
 ### 2. Variables Clave Seleccionadas para la Investigación
 
 |  |  |  |  |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | **Variable** | **Tipo** | **Descripción y Valores** | **Justificación** |
 | Edad (edad) | Cuantitativa continua | Edad del encuestado (rango: 18 a 95 años). | Analizar la relación entre la edad y la disposición a pagar. |
 | Tipo de Material (p1...) | Categórica | Tipo de material leído: 1=Libros, 2=Revistas, 3=Periódicos, 4=Web/foros/blogs, 5=Comics | Identificar preferencias y vincularlas con disposición a pagar. |
