@@ -6,7 +6,7 @@ editor: visual
 
 # Etapa 3: Análisis Inferencial
 
-Primero, leemos la base de datos limpia con nuestras variables seleccionadas.
+Primero, leemos la base de datos limpia con nuestras variables seleccionadas.?
 
 ```{r leerbase}
 library(tidyverse)
