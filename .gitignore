@@ -7,4 +7,18 @@ output/
 
 /.quarto/
 
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archivos de miniaturas
+._*
+
+# Archivos temporales del sistema
+.Spotlight-V100
+.Trashes
+
+# Archivos de metadatos
+Icon?
 **/*.quarto_ipynb

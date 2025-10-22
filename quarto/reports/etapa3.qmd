@@ -1,0 +1,117 @@
+---
+title: "etapa3"
+format: docx
+editor: visual
+---
+
+# Etapa 3: Análisis Inferencial
+
+Primero, leemos la base de datos limpia con nuestras variables seleccionadas.?
+
+```{r leerbase}
+library(tidyverse)
+library(here)
+
+df <- read_csv(here("quarto/reports/df_limpio.csv"))
+
+```
+
+## Intervalos de Confianza
+
+```{r IC}
+# -------------------------------
+# FORMULARIO GENERAL DE ANÁLISIS
+# -------------------------------
+
+# Nivel de significancia
+alpha <- 0.04
+
+# Vectores de Variables
+GastoLibros <- df[["p7_3"]]  # Datos de la primera población
+Edad <- df[["edad"]]  # Datos de la segunda población
+
+# -------------------------------
+# INTERVALOS DE CONFIANZA
+# -------------------------------
+
+# 1. IC para la media de una población
+t.test(GastoLibros, conf.level = 1 - alpha)
+
+# 2. IC para la diferencia de medias entre dos poblaciones
+t.test(GastoLibros, Edad, conf.level = 1 - alpha)
+
+# 3. IC para la varianza de una población
+n1 <- length(GastoLibros)
+var1 <- var(GastoLibros)
+chi_inf <- qchisq(1 - alpha/2, df = n1 - 1)
+chi_sup <- qchisq(alpha/2, df = n1 - 1)
+IC_varianza <- c((n1 - 1) * var1 / chi_inf, (n1 - 1) * var1 / chi_sup)
+IC_varianza
+
+# 4. IC para proporción (Lectores mayores de 30)
+mayores_30 <- sum(Edad > 30)
+n <- length(Edad)
+prop.test(x = mayores_30, n = n, conf.level = 0.96)
+
+```
+
+## Pruebas de Hipótesis
+
+```{r PH}
+# -------------------------------
+# PRUEBAS DE HIPÓTESIS
+# -------------------------------
+
+# Nivel de significancia
+alpha <- 0.04
+
+# Vectores de Variables
+GastoLibros <- df[["p7_3"]]  # Supuesto: gasto mensual en libros
+Edad <- df[["edad"]]          # Edad de los participantes
+
+# -------------------------------------------
+# 1. Prueba de hipótesis para una media (t-test)
+#    H0: mu = 200
+#    H1: mu ≠ 200
+# -------------------------------------------
+t.test(GastoLibros, mu = 200, alternative = "two.sided", conf.level = 1 - alpha)
+
+# -------------------------------------------
+# 2. Prueba de hipótesis para diferencia de medias
+#    H0: mu1 = mu2
+#    H1: mu1 ≠ mu2
+# -------------------------------------------
+t.test(GastoLibros, Edad, alternative = "two.sided", conf.level = 1 - alpha)
+
+# -------------------------------------------
+# 3. Prueba de hipótesis para proporciones
+#    Ejemplo: proporción de personas mayores de 30 años
+#    H0: p = 0.5
+#    H1: p ≠ 0.5
+# -------------------------------------------
+mayores_30 <- sum(Edad > 30)
+n <- length(Edad)
+prop.test(x = mayores_30, n = n, p = 0.5, alternative = "two.sided", conf.level = 1 - alpha)
+
+# -------------------------------------------
+# 4. Prueba de hipótesis para varianza
+#    H0: σ² = σ0² (supongamos σ0 = 100)
+#    H1: σ² ≠ σ0²
+# -------------------------------------------
+n1 <- length(GastoLibros)
+var1 <- var(GastoLibros)
+sigma0 <- 100
+chi_cal <- (n1 - 1) * var1 / sigma0^2
+chi_inf <- qchisq(alpha / 2, df = n1 - 1)
+chi_sup <- qchisq(1 - alpha / 2, df = n1 - 1)
+
+cat("\nValor de Chi-cuadrado calculado:", chi_cal)
+cat("\nIntervalo crítico:", chi_inf, "-", chi_sup)
+
+if (chi_cal < chi_inf | chi_cal > chi_sup) {
+  cat("\n→ Se rechaza H0: la varianza es diferente de", sigma0^2, "\n")
+} else {
+  cat("\n→ No se rechaza H0: no hay evidencia suficiente para decir que la varianza difiera de", sigma0^2, "\n")
+}
+
+```
