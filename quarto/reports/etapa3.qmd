@@ -58,19 +58,55 @@ prop.test(x = mayores_30, n = n, conf.level = 0.96)
 ## Pruebas de Hipótesis
 
 ```{r PH}
-# -------------------------------
-# PRUEBAS DE HIPÓTESIS
-# -------------------------------
-
+# Nivel de significancia
 alpha <- 0.04
-# 1. Prueba de diferencia de medias (t-test)
-t.test(grupo1, grupo2, alternative = "two.sided", conf.level = 1 - alpha)
 
-# 2. Prueba de cociente de varianzas (F-test)
-var.test(grupo1, grupo2, alternative = "two.sided", conf.level = 1 - alpha)
+# Vectores de Variables
+GastoLibros <- df[["p7_3"]]  # Supuesto: gasto mensual en libros
+Edad <- df[["edad"]]          # Edad de los participantes
 
-# 3. Prueba Chi-cuadrada para proporciones (tabla de contingencia)
-# Ejemplo: 10 éxitos en grupo1, 8 en grupo2
-tabla <- matrix(c(10, 20, 8, 22), nrow = 2)  # Éxitos y fracasos
-chisq.test(tabla)
+# -------------------------------------------
+# 1. Prueba de hipótesis para una media (t-test)
+#    H0: mu = 200
+#    H1: mu ≠ 200
+# -------------------------------------------
+t.test(GastoLibros, mu = 200, alternative = "two.sided", conf.level = 1 - alpha)
+
+# -------------------------------------------
+# 2. Prueba de hipótesis para diferencia de medias
+#    H0: mu1 = mu2
+#    H1: mu1 ≠ mu2
+# -------------------------------------------
+t.test(GastoLibros, Edad, alternative = "two.sided", conf.level = 1 - alpha)
+
+# -------------------------------------------
+# 3. Prueba de hipótesis para proporciones
+#    Ejemplo: proporción de personas mayores de 30 años
+#    H0: p = 0.5
+#    H1: p ≠ 0.5
+# -------------------------------------------
+mayores_30 <- sum(Edad > 30)
+n <- length(Edad)
+prop.test(x = mayores_30, n = n, p = 0.5, alternative = "two.sided", conf.level = 1 - alpha)
+
+# -------------------------------------------
+# 4. Prueba de hipótesis para varianza
+#    H0: σ² = σ0² (supongamos σ0 = 100)
+#    H1: σ² ≠ σ0²
+# -------------------------------------------
+n1 <- length(GastoLibros)
+var1 <- var(GastoLibros)
+sigma0 <- 100
+chi_cal <- (n1 - 1) * var1 / sigma0^2
+chi_inf <- qchisq(alpha / 2, df = n1 - 1)
+chi_sup <- qchisq(1 - alpha / 2, df = n1 - 1)
+
+cat("\nValor de Chi-cuadrado calculado:", chi_cal)
+cat("\nIntervalo crítico:", chi_inf, "-", chi_sup)
+
+if (chi_cal < chi_inf | chi_cal > chi_sup) {
+  cat("\n→ Se rechaza H0: la varianza es diferente de", sigma0^2, "\n")
+} else {
+  cat("\n→ No se rechaza H0: no hay evidencia suficiente para decir que la varianza difiera de", sigma0^2, "\n")
+}
 ```
