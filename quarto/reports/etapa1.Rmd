@@ -15,7 +15,7 @@ output:
     toc_depth: 2
     number_sections: true
 ---
-
+prueba omar
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -79,6 +79,7 @@ Esto también podría reflejar que tanta importancia se le da a la lectura como 
 ### 1. Exploración de la base de datos
 
 ```{r}
+#prueba
 library(tidyverse)
 library(here)
 
