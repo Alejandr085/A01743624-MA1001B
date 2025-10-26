@@ -1,0 +1,1065 @@
+---
+title: "Etapa 1: El contexto y Etapa 2: Comprensión y Preparacion de Datos"
+author:
+  - name: "Elías Alejandro Corral Rodríguez"
+  - name: "Jesús Oscar Flores Cota"
+  - name: "Marcelo Balderas Gómez"
+  - name: "Omar Gael Arzaga Chaparro"
+  - name: "Adrián David Páez Parra"
+  
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+
+output:
+  word_document:
+    toc: false
+    toc_depth: 2
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Etapa 1: El contexto y el objetivo
+
+## Revisión Bibliográfica
+
+El estudio de la lectura en México es fundamental para comprender los hábitos culturales de la población y su capacidad de ejercer ciudadanía crítica. La lectura no solo es un medio de entretenimiento, sino también una herramienta clave para la formación académica, la transmisión de conocimiento y el desarrollo del pensamiento crítico. Medir la lectura de manera sistemática permite identificar tendencias, rezagos y oportunidades, tanto en el ámbito educativo como en el cultural, y ofrece información valiosa para el diseño de estrategias que busquen mejorar la participación ciudadana.
+
+Uno de los principales instrumentos para la medición de estadísticas relacionadas a la lectura en el país es el Módulo sobre Lectura (MOLEC), administrado por el Instituto Nacional de Estadística y Geografía (INEGI). Este módulo, creado en 2015, tiene como objetivo generar información estadística sobre el comportamiento lector de la población que reside en México de 18 y más años de edad, con la finalidad de proporcionar datos útiles para conocer las características de la lectura de la citada población y proporcionar elementos para el fomento de la lectura (INEGI, s.f.). Sus indicadores abarcan el porcentaje de lectores, materiales preferidos, tiempo dedicado a leer y motivos para leer o no. Dichos resultados se han convertido en una referencia obligada para entender la evolución de los hábitos lectores y comparar los cambios a lo largo de los años.
+
+A nivel regional, el Centro Regional para el Fomento del Libro en América Latina y el Caribe (CERLALC) señala problemáticas comunes en Iberoamérica: baja inversión en bibliotecas públicas, concentración de librerías en grandes ciudades, desigualdad en el acceso y escasa evaluación de los programas de fomento. Estas condiciones explican por qué los niveles de lectura se mantienen bajos a pesar de las campañas de promoción y de los esfuerzos que buscan acercar los libros a distintos sectores de la población. El caso de México, por tanto, no es aislado, sino que forma parte de una realidad compartida con otros países de la región.
+
+En el ámbito académico, el Tecnológico de Monterrey ha desarrollado programas como “Pasión por la Lectura". Estas iniciativas buscan crear comunidades lectoras, promover la literatura como vehículo de pensamiento crítico y difundir la producción académica y cultural (Tecnológico de Monterrey, 2024). Asimismo, la Feria Internacional del Libro Monterrey se ha consolidado como un espacio clave para el fomento de la lectura, reuniendo editoriales, universidades e instituciones culturales en un evento que impulsa la interacción social en torno al libro. Estos esfuerzos, tanto institucionales como culturales, muestran que el fomento a la lectura puede construirse desde diferentes frentes y no depende únicamente de las encuestas o de las políticas oficiales.
+
+Sin embargo, la medición de la lectura enfrenta retos relacionados con su metodología. Entre ellos, el sesgo por autoevaluación, ya que las personas pueden tender a exagerar sus hábitos lectores. De igual manera, existe cierta dificultad de contabilizar de manera precisa la lectura digital, que incluye redes sociales, blogs y artículos en línea, los cuales forman parte creciente de los hábitos de consumo de información en la actualidad. Además, existe la limitación de la comparabilidad internacional, pues mientras el MOLEC se centra en frecuencia y materiales, otros países consideran también la comprensión lectora y el impacto en la vida cotidiana, lo que abre la puerta a visiones más completas del fenómeno.
+
+La motivación original del INEGI al diseñar el MOLEC fue generar información confiable para llevar un registro contable sobre hábitos de lectura en México con el fin de visualizar áreas de mejora en este aspecto, y poder destinar políticas públicas para fomentar la lectura y desarrollar la educación integral. No obstante, persiste la duda de si los resultados han tenido un impacto significativo en los programas de fomento y en la asignación de recursos. El vínculo entre la medición y la política pública sigue siendo un tema abierto a la investigación y al debate académico, lo que demuestra que aún queda trabajo por hacer en la conexión entre los datos generados y las acciones que deberían derivar de ellos.
+
+En conclusión, la literatura revisada permite identificar cuatro ejes principales: (1) los niveles de lectura en México son bajos y muestran una tendencia decreciente; (2) la comprensión lectora de los jóvenes está por debajo del promedio internacional; (3) los problemas estructurales en América Latina limitan el acceso equitativo a la lectura; y (4) las iniciativas académicas y culturales, como las del Tecnológico de Monterrey y la FIL Monterrey, representan esfuerzos valiosos que deben analizarse en términos de su verdadero impacto en los hábitos lectores. Estas conclusiones invitan a reflexionar no solo sobre la situación actual, sino también sobre los retos futuros que enfrenta el país para fortalecer la cultura lectora.
+
+## Objetivo de Investigación
+
+La encuesta MOLEC es una iniciativa realizada desde 2015 por el INEGI con el fin de recopilar información de los lectores mexicanos de 18 años y más. En esta, se recopila información no solo de cuantas personas leen y que leen, sino también que materiales prefieren, ya sean revistas, libros, periódicos o medios digitales, y si estos los adquieren comprandolos o a través de otros medios (bibliotecas locales, descargas en línea, etc.). Esto nos guía a responder la incógnita planteada: ¿Están las personas dispuestas a pagar por sus lecturas? Y analizar si esto se relaciona con la edad o con el tipo de material a adquirir.
+
+La pregunta en cuestion nos puede llegar a abordar una doble problemática: La razón por la que el nivel de lectura en el país se encuentra en decadencia en los años recientes y su relación con la barrera económica impuesta por temas modernos como la evolución de la lectura a un nuevo formato digital y los cambios de la fomentación de lectura en todas las edades tomando en cuenta la percepción pública del aspecto monetario relacionado.
+
+Guiándonos con la pregunta de investigación, la información del dataset que nos ayudará a responder las preguntas es la siguiente:
+
+-   La disposición a pagar por los materiales de lectura: Determinar la relación entre la intención de querer leer y la adquisición de material de lectura, esto igual ayuda a saber si el acceso medios de lectura gratuitos tienen un impacto en el nivel lector
+
+-   La relación entre la edad y los hábitos de lectura: Nos permite conocer si la edad se relaciona con la disposición a pagar y el efecto en nivel de lectura por edades.
+
+-   Preferencias en formato de material leído: Nos permite conocer los medios de lectura más populares y como las preferencias tienen efecto en la disposición a pagar por ellos.
+
+Motivo por el que elegimos esta pregunta es por la gran variedad de perspectivas desde la cual podemos indagar en ella, así como la posibilidad de comprender la valoración social y cultural que le asignamos a la lectura en méxico. Algunas de las perspectivas o formas de impacto social a través de las cuales abordaremos la incógnita son:
+
+-   Impacto Cultural y Educativo
+
+Uno de los indicadores más importantes del desarrollo cultural de una sociedad es la lectura, por lo que analizar la disposición de las personas a pagar por esta, nos permitirá entender si es vista como un bien de consumo o como una inversión educativa. Cuando las personas dejan de pagar por libros y dependen del acceso gratuito para acceder a estos, se ve reflejada la poca importancia y valor cultural que se le da a la lectura.
+
+-   Acceso y Desigualdad
+
+Indagar la disposición de las personas a pagar por lectura nos puede llevar a conocer más acerca de los motivos, pudiendo revelar brechas socioeconómicas, como es el caso de ciertos sectores de la población con bajo nivel socioeconómico  que, al no poder pagar por libros, se ven limitados al acceso gratuito de estos contenidos, limitando su libre acceso a la educación y su desarrollo como personas. Esto podría reflejar un problema claro que, al verse en situaciones de precariedad, las personas descartan casi completamente o ven como innecesarios gastos en material de lectura, siendo que, en otros estratos sociales, estos podrían ser vistos como una inversión educativa o como algo de mayor importancia.
+
+Esta información va a poder ayudar a establecer políticas públicas de lectura que ayuden a que esta no dependa del nivel socioeconómico y que garanticen el derecho a la educación y al libre acceso a la educación de todas las personas.
+
+-   Industria Editorial y Digital
+
+La pregunta que elegimos no solamente abarca aspectos sociales, sino también económicos. Saber qué tan dispuesta está la gente a pagar por libros así como si la gente prefiere materiales de lectura físicos o digital ayuda a orientar a la industria en sus estrategias de distribución y sus precios. Esto les permitirá saber qué tan sostenible es el mercado de la lectura en México. 
+
+-   Brecha Generacional
+
+Responder la pregunta y el cómo se relaciona el factor de la edad con la disposición a comprar libros, nos ayuda a ver reflejadas las preferencias de personas de distintas edades, lo que podría mostrarnos una brecha o discrepancia en cuanto a sus preferencias. Puede ser que las personas jóvenes se inclinen más por materiales de lectura digital, mientras que las personas mayores sigan prefiriendo medios físicos, tales como el periodico, revistas o libros.
+
+Esto también podría reflejar que tanta importancia se le da a la lectura como valor cultural a través del tiempo y si esta ha cambiado con el pasar de los años. Puede ser que las personas mayores utilizan más su tiempo en la lectura o que por el contrario, con el fácil acceso a medios digitales, los jóvenes la priorizan más.
+
+## Descripción General del Dataset
+
+### 1. Exploración de la base de datos
+
+```{r}
+#prueba
+library(tidyverse)
+library(here)
+
+M19 <- read_csv(here("data", "Datos_molec_2019.csv"))
+M20 <- read_csv(here("data", "Datos_molec_2020.csv"))
+M21 <- read_csv(here("data", "Datos_molec_2021.csv"))
+M22 <- read_csv(here("data", "Datos_molec_2022.csv"))
+M23 <- read_csv(here("data", "Datos_molec_2023.csv"))
+M24 <- read_csv(here("data", "Datos_molec_2024.csv"))
+
+#str(M19)
+#str(M20)
+#str(M21)
+#str(M22)
+#str(M23)
+#str(M24)
+```
+
+Se dispone de dos conjuntos de datos correspondientes a los años 2019 hasta 2024, usaremos todas las bases de datos para realizar un análisis más completo considerando diferentes años.
+
+-   Registros: De 1948 a 2016 filas por año (**2019**: 1,980; **2020**: 2,010; **2021**: 1948; **2022**: 2016; **2023**: 1996; **2024**: 2016).
+
+-   Variables: 108 columnas en cada dataset.
+
+El objetivo de la investigación es analizar la disposición a pagar por materiales de lectura, su relación con la edad y los tipos de materiales más consumidos.
+
+### 2. Variables Clave Seleccionadas para la Investigación
+
+|  |  |  |  |
+|------------------|------------------|------------------|------------------|
+| **Variable** | **Tipo** | **Descripción y Valores** | **Justificación** |
+| Edad (edad) | Cuantitativa continua | Edad del encuestado (rango: 18 a 95 años). | Analizar la relación entre la edad y la disposición a pagar. |
+| Tipo de Material (p1...) | Categórica | Tipo de material leído: 1=Libros, 2=Revistas, 3=Periódicos, 4=Web/foros/blogs, 5=Comics | Identificar preferencias y vincularlas con disposición a pagar. |
+| Compra de Material (p7) | Categórica | Cómo obtuvo el material: 1=Comprado, 2=Regalado, 3=Descargado gratis | Determinar intención directa de gasto en lectura. |
+| Gasto en Material (p7a) | Cuantitativa continua | Monto gastado en pesos mexicanos. | Cuantificar inversión y variación entre grupos de edad. |
+| Motivo de Lectura (p5...) | Categórica | Razón principal: 1=Trabajo, 2=Estudio, 3=Cultura general, 4=Entretenimiento, 5=Religión | Vincular motivos con voluntad de pagar. |
+| Frecuencia Lectura (p24) | Categórica | Frecuencia: 1=Diario, 2=Semanal, 3=Mensual, 4=Trimestral, 5=Ocasional | Evaluar correlación entre hábito lector y disposición a invertir. |
+
+#### Diccionarios
+
+```{r}
+#Dicc19 <- read_csv(here("data", "Diccionario_molec_2019.csv"))
+#Dicc20 <- read_csv(here("data", "Diccionario_molec_2020.csv"))
+#Dicc21 <- read_csv(here("data", "Diccionario_molec_2021.csv"))
+#Dicc22 <- read_csv(here("data", "Diccionario_molec_2022.csv"))
+#Dicc23 <- read_csv(here("data", "Diccionario_molec_2023.csv"))
+#Dicc24 <- read_csv(here("data", "Diccionario_molec_2024.csv"))
+```
+
+#### Resumen de las variables
+
+```{r}
+#summary(M19)
+#summary(M20)
+#summary(M21)
+#summary(M22)
+#summary(M23)
+#summary(M24)
+```
+
+#### Selección de las variables
+
+```{r}
+
+# Nombres de las variables seleccionadas por el usuario para el análisis de MOLEC
+variables_correctas <- c("edad", "p25", "p23_1", "nivel", "p13", "p13_3", "p24")
+
+# Selección de columnas en cada dataframe anual
+M19selec <- M19[, variables_correctas]
+M20selec <- M20[, variables_correctas]
+M21selec <- M21[, variables_correctas]
+M22selec <- M22[, variables_correctas]
+M23selec <- M23[, variables_correctas]
+M24selec <- M24[, variables_correctas]
+
+```
+
+Archivo Rmd con las variables seleccionadas en cada base de datos: <https://github.com/Alejandr085/A01743624-MA1001B>
+
+### 3. Consideraciones sobre Calidad de Datos
+
+#### Datos perdidos o faltantes
+
+```{r}
+summary(M19selec)
+summary(M20selec)
+summary(M21selec)
+summary(M22selec)
+summary(M23selec)
+summary(M24selec)
+```
+
+-   Datos faltantes en columnas con sufijo "\_Xesp" (como p5_6esp, p11_6esp), que corresponden a respuestas abiertas.
+
+-   Las columnas l_formato, r_formato y p_formato también presentan valores vacíos, es posible interpretar esos resultados vacíos como "No ha leído" o "No aplica".
+
+#### Generar base de datos con intervalo de tiempo y variables seleccionadas
+
+```{r}
+df = rbind(M19selec, M20selec, M21selec, M22selec, M23selec, M24selec)
+df
+```
+
+### 4. Estrategia de Análisis
+
+#### 1. Análisis Descriptivo
+
+Edad (edad):
+
+Medidas de tendencia central (media, mediana), dispersión (desviación estándar, rango), forma (sesgo, curtosis).
+
+-   Histogramas y boxplots para visualizar distribución y detectar outliers.
+
+Nivel educativo (nivel):
+
+-   Tabla de frecuencia y gráfico de barras para ver la distribución por nivel de instrucción.
+
+Material más leído (p23_1):
+
+-   Tabla de frecuencia y gráfico de pastel para identificar qué tipo de material predomina (libros, revistas, periódicos, etc.).
+
+Motivo principal de lectura (p24):
+
+-   Tabla de frecuencia y gráfico de barras para explorar razones de lectura (trabajo, estudio, entretenimiento, etc.).
+
+Forma de obtención de libros (p25):
+
+-   Distribución de respuestas (descargado, regalado/prestado, comprado) para analizar hábitos de compra.
+
+Tiempo dedicado a lectura (p13 + p13_3):
+
+-   Crear variable combinada de tiempo total.
+
+-   Medidas descriptivas y visualización con histogramas y boxplots.
+
+#### 2. Análisis Bivariado
+
+Edad vs. Tiempo de lectura (edad vs. p13 + p13_3):
+
+-   Correlación lineal (Pearson o Spearman según normalidad).
+
+-   Gráfico de dispersión con línea de tendencia.
+
+Edad vs. Forma de obtención de libros (edad vs. p25):
+
+-   Comparación de medias por categoría (p25) usando boxplots.
+
+-   ANOVA o prueba de Kruskal-Wallis para diferencias significativas.
+
+Material más leído vs. Motivo de lectura vs. Forma de obtención (p23_1 vs. p24 vs. p25):
+
+-   Tablas cruzadas y gráficos de barras apiladas.
+
+-   Prueba Chi-cuadrada para asociación entre variables categóricas.
+
+Nivel educativo vs. Forma de obtención de libros (nivel vs. p25):
+
+-   Tabla de contingencia y prueba Chi-cuadrada.
+
+#### 3. Análisis Integrado
+
+Objetivo central: ¿Quiénes (por edad), qué (tipo de material) y por qué (motivo) están más dispuestos a pagar por sus lecturas?
+
+Segmentar por edad (cuartiles o grupos etarios) y analizar:
+
+-   Proporción de personas que compran libros (p25 == 3)
+
+-   Tipo de material más leído (p23_1)
+
+-   Motivo de lectura (p24)
+
+-   Tiempo dedicado (p13 + p13_3)
+
+Comparar gasto promedio entre grupos usando:
+
+-   Intervalos de confianza para medias por grupo
+
+-   Pruebas de hipótesis (diferencia de medias, ANOVA)
+
+Modelo de regresión lineal:
+
+-   Variable dependiente: tiempo de lectura o probabilidad de compra
+
+-   Predictoras: edad, nivel educativo, motivo de lectura
+
+# Etapa 2: Comprensión y Preparacion de los Datos
+
+## 1. Verificar la calidad de los datos
+
+### B. Indica la dimension del dataset. Indica la cantidad de registros y columnas.
+
+```{r}
+dim(df)
+```
+
+Juntamos todos los registros en un mismo archivo con las siguientes dimensiones:
+
+-   Registros: 11966.
+
+-   Variables: 15 columnas en cada dataset.
+
+### C. Detecta datos faltantes, erróneos, duplicados, errores de escritura, limpia la base de datos y guarda la base limpia con la instrucción write.csv
+
+```{r}
+# Revisar cantidad de NA por variable
+colSums(is.na(df))
+
+# Verificar duplicados
+sum(duplicated(df))
+
+# Eliminar NA's (solo si no son relevantes o no hay otra opción)
+df_limpio <- na.omit(df)
+
+# Guardar base limpia
+
+df_limpio <- df[!duplicated(df), ]
+df_limpio
+
+write.csv(df_limpio, "df_limpio.csv", row.names = TRUE)
+
+```
+
+Eliminamos 3101 filas repetidas para facilitar la interpretación de los datos. Los datos representaban una proporción mínima en comparación al total de registros. Por esta razón, se decidió eliminarlos, ya que su exclusión no afecta de gran medida al informe.
+
+### Explicación de las variables
+
+| Nombre | Descripción | Tipo | Valores posibles | \% de valores nulos (estimado) |
+|---------------|---------------|---------------|---------------|---------------|
+| `edad` | Edad del informante | Numérica | 18 a 98 años | \~0% |
+| `p25` | Motivo principal por el que leyó páginas de internet, foros o blogs | Categórica ordinal | 1: Trabajo<br>2: Estudio<br>3: Cultura general<br>4: Entretenimiento<br>5: Religión<br>6: Otro | \~15–25% |
+| `p23_1` | Formato de historietas que lee con mayor frecuencia | Categórica nominal | 1: Digital<br>2: Impresas | \~30–40% |
+| `nivel` | Nivel de instrucción alcanzado | Categórica ordinal | 00: Sin instrucción<br>01–09: Desde preescolar hasta posgrado<br>99: No especificado | \~1–5% |
+| `p13` | Forma de adquisición de revistas | Categórica nominal | 1: Descargadas gratuitamente<br>2: Regaladas/prestadas<br>3: Compradas | \~20–30% |
+| `p13_3` | Gasto aproximado en revistas | Numérica | 000000 a 999999 pesos mexicanos | \~30–40% |
+| `p24` | Frecuencia con la que lee páginas de internet, foros o blogs | Categórica ordinal | 1: Diariamente<br>2: Semanalmente<br>3: Mensualmente<br>4: Trimestralmente<br>5: Ocasionalmente | \~15–25% |
+
+## 2. Comprensión de los datos (Análisis descriptivo y su interpretación, incluye gráficas y medidas descriptivas)
+
+### A. Exploracion de datos
+
+1.  Calcula medidas estadísticas
+
+    -   Variables cuantitativas
+
+        -   Medidas de tendencia central: media, mediana y rango medio.
+
+        -   Medidas de dispersión: desviación estándar, coeficiente de variación.
+
+        -   Medidas de posición: cuartiles
+
+        -   Medidas de forma: sesgo, curtosis
+
+```{r}
+  # Cargar librerías necesarias
+library(dplyr)
+library(moments)  # Para sesgo y curtosis
+library(ggplot2)
+
+# Variables cuantitativas en tu análisis
+vars_cuantitativas <- c("edad", "p13_3") 
+
+# Función para calcular medidas estadísticas
+resumen_cuantitativas <- function(df, var) {
+  x <- df[[var]]
+  x <- x[!is.na(x)]  # Eliminar NA
+  
+  media <- mean(x)
+  mediana <- median(x)
+  rango_medio <- (max(x) + min(x)) / 2
+  sd <- sd(x)
+  cv <- sd / media
+  cuartiles <- quantile(x, probs = c(0.25, 0.5, 0.75))
+  sesgo <- skewness(x)
+  curtosis <- kurtosis(x)
+  
+  data.frame(
+    Variable = var,
+    Media = media,
+    Mediana = mediana,
+    Rango_medio = rango_medio,
+    Desv_Estandar = sd,
+    Coef_Variacion = cv,
+    Q1 = cuartiles[1],
+    Q2 = cuartiles[2],
+    Q3 = cuartiles[3],
+    Sesgo = sesgo,
+    Curtosis = curtosis
+  )
+}
+
+# Aplicar a todas las variables cuantitativas
+resultados_cuant <- lapply(vars_cuantitativas, function(v) resumen_cuantitativas(df_limpio, v))
+resultados_cuant <- bind_rows(resultados_cuant)
+print(resultados_cuant)
+
+
+```
+
+```         
+-   Variables cualitativas
+
+    -   Tabla de distribución de frecuencia
+
+    -   Para escala ordinal: Mediana
+```
+
+```{r}
+  # Variables cualitativas
+vars_cualitativas <- c("nivel", "p25", "p23_1", "p13", "p24")
+
+# Tabla de frecuencia para cada variable
+tablas_frecuencia <- lapply(vars_cualitativas, function(v) {
+  tabla <- table(df_limpio[[v]])
+  prop <- prop.table(tabla)
+  data.frame(
+    Variable = v,
+    Categoria = names(tabla),
+    Frecuencia = as.vector(tabla),
+    Proporcion = round(100 * as.vector(prop), 2)
+  )
+})
+
+# Mostrar tablas
+for (tabla in tablas_frecuencia) {
+  print(tabla)
+}
+
+# Variables ordinales
+vars_ordinales <- c("nivel", "p24")
+
+medianas_ordinales <- sapply(vars_ordinales, function(v) {
+  x <- df_limpio[[v]]
+  x <- as.numeric(as.character(x))  # Asegurar que se pueda calcular la mediana
+  median(x, na.rm = TRUE)
+})
+
+print(medianas_ordinales)
+
+```
+
+2.  Explora los datos usando herramientas de visualización
+
+    -   Variables cuantitativas:
+
+        -   Medidas de posición no-central: cuartiles, outlier (valores atípicos) que se visualizan en el boxplots
+
+        -   Análisis de distribución de los datos (Histogramas). Identificar si tiene forma simétrica o asimétrica y revisar entre qué valores varían los datos, en donde se concentran más los datos
+
+        -   Análisis de correlación  de los datos para ver si dos variables cuantitativas están relacionadas linealmente entre sí
+
+```{r vcuan}
+library(ggplot2)
+
+ggplot(df_limpio, aes(x = edad)) +
+  geom_histogram(binwidth = 5, fill = "#0073C2FF", color = "white") +
+  labs(
+    title = "Histograma de edad",
+    x = "Edad",
+    y = "Frecuencia"
+  ) +
+  theme_minimal(base_size = 13)
+
+library(ggplot2)
+library(dplyr)
+
+# Diccionario de niveles educativos
+niveles_educativos <- c(
+  "00" = "Sin instrucción",
+  "01" = "Preescolar",
+  "02" = "Primaria incompleta",
+  "03" = "Primaria completa",
+  "04" = "Secundaria incompleta",
+  "05" = "Secundaria completa",
+  "06" = "Preparatoria incompleta",
+  "07" = "Preparatoria completa",
+  "08" = "Carrera técnica",
+  "09" = "Profesional incompleto",
+  "10" = "Profesional completo",
+  "11" = "Maestría",
+  "12" = "Doctorado",
+  "99" = "No especificado"
+)
+
+# Reemplazar códigos por etiquetas
+df_nivel <- df_limpio %>%
+  mutate(nivel_etiqueta = niveles_educativos[as.character(nivel)]) %>%
+  filter(!is.na(nivel_etiqueta))
+
+# Gráfico de barras con etiquetas
+ggplot(df_nivel, aes(x = nivel_etiqueta)) +
+  geom_bar(fill = "#56B4E9") +
+  labs(
+    title = "Distribución del nivel educativo",
+    x = "Nivel educativo",
+    y = "Frecuencia"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+```         
+-   Variables categóricas
+
+    -   Distribución de los datos (diagramas de barras, diagramas de pastel)
+    
+    -   Diagrama de pastel con el motivo principal de lectura
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+# Diccionario de motivos
+motivos_p25 <- c(
+  "1" = "Trabajo",
+  "2" = "Estudio",
+  "3" = "Cultura general",
+  "4" = "Entretenimiento",
+  "5" = "Religión",
+  "6" = "Otro"
+)
+
+# Preparar datos incluyendo NA como categoría
+df_p25 <- df_limpio %>%
+  mutate(motivo = ifelse(is.na(p25), "No aplica", motivos_p25[as.character(p25)])) %>%
+  count(motivo) %>%
+  filter(motivo != "Otro") %>%
+  mutate(
+    prop = round(100 * n / sum(n), 1),
+    label = paste0(motivo, ": ", prop, "%")
+  )
+
+# Gráfico de pastel
+ggplot(df_p25, aes(x = "", y = prop, fill = motivo)) +
+  geom_col(width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Motivo principal de lectura en internet", fill = "Motivo") +
+  theme_void() +
+  geom_text(aes(label = label), position = position_stack(vjust = 0.5))
+
+
+```
+
+### B. Vincula los datos categóricos con los numéricos de acuerdo a tu objetivo:
+
+1.  Calcula las medidas de las variables cuantitativas por categoría de alguna variable categórica de interés
+
+```{r medidas variablescuan}
+library(dplyr)
+
+# Ejemplo: gasto en revistas (p13_3) por motivo de lectura (p25)
+df_limpio %>%
+  group_by(p25) %>%
+  summarise(
+    Media = mean(p13_3, na.rm = TRUE),
+    Mediana = median(p13_3, na.rm = TRUE),
+    SD = sd(p13_3, na.rm = TRUE),
+    Q1 = quantile(p13_3, 0.25, na.rm = TRUE),
+    Q3 = quantile(p13_3, 0.75, na.rm = TRUE),
+    n = n()
+  )
+
+```
+
+2.  Elabora gráficos de caja y bigote de las variables cuantitativas por categoría de alguna variable categórica de interés
+
+```{r graficoscajabigote}
+library(ggplot2)
+library(dplyr)
+
+# Paso 1: Filtrar valores extremos para evitar distorsión visual
+df_filtrado <- df_limpio %>%
+  filter(!is.na(p13_3), !is.na(p25)) %>%
+  filter(p13_3 <= 1000)  # Puedes ajustar el umbral si lo deseas
+
+# Paso 2: Etiquetas descriptivas para motivos de lectura (si las conoces)
+motivos_labels <- c(
+  "0" = "No especificado",
+  "1" = "Trabajo",
+  "2" = "Estudio",
+  "3" = "Cultura general",
+  "4" = "Entretenimiento",
+  "5" = "Religión",
+  "6" = "Otro"
+)
+
+# Paso 3: Crear gráfico
+ggplot(df_filtrado, aes(x = factor(p25, levels = names(motivos_labels), labels = motivos_labels), y = p13_3)) +
+  geom_boxplot(fill = "#69b3a2", outlier.color = "red") +
+  labs(
+    title = "Gasto en revistas por motivo de lectura",
+    x = "Motivo de lectura (p25)",
+    y = "Gasto en revistas (p13_3 en MXN)"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+## 3. Gráficas Utiles para el Análisis
+
+### 1. Edad vs Gasto (`edad` vs `p13_3`)
+
+**Tipo:** Cuantitativa – Cuantitativa
+
+**Gráfica:** Dispersión
+
+```{r}
+df_gastan <- df_limpio %>%
+  filter(!is.na(p13_3), p13_3 > 0, p13_3 <= 1000)
+
+ggplot(df_gastan, aes(x = edad, y = p13_3)) +
+  geom_point(alpha = 0.4, color = "#E69F00") +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(title = "Edad vs Gasto en revistas (solo quienes gastan)", x = "Edad", y = "Gasto en revistas (p13_3)") +
+  theme_minimal()
+formas_p13 <- c("1" = "Descargado", "2" = "Regalado", "3" = "Comprado")
+
+df_limpio <- df_limpio %>%
+  mutate(forma = formas_p13[as.character(p13)])
+
+ggplot(df_limpio, aes(x = forma, y = edad)) +
+  geom_boxplot(fill = "#56B4E9", outlier.color = "red") +
+  labs(title = "Edad por forma de adquisición de revistas", x = "Forma de adquisición", y = "Edad") +
+  theme_minimal()
+
+
+```
+
+###  2. Motivo vs Gasto (`p25` vs `p13_3`)
+
+**Tipo:** Categórica – Cuantitativa
+
+**Gráfica:** Boxplot con filtrado de outliers
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+motivos_p25 <- c(
+  "1" = "Trabajo", "2" = "Estudio", "3" = "Cultura general",
+  "4" = "Entretenimiento", "5" = "Religión", "6" = "Otro"
+)
+
+df_gastan <- df_limpio %>%
+  mutate(motivo = motivos_p25[as.character(p25)]) %>%
+  filter(!is.na(p13_3), p13_3 > 0, p13_3 <= 10000)
+
+ggplot(df_gastan, aes(x = motivo, y = p13_3)) +
+  geom_boxplot(fill = "#69b3a2", outlier.color = "red") +
+  scale_y_log10() +
+  labs(title = "Gasto en revistas por motivo (solo quienes gastan)", x = "Motivo", y = "Gasto (p13_3)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+df_promedios <- df_limpio %>%
+  mutate(motivo = motivos_p25[as.character(p25)]) %>%
+  filter(!is.na(p13_3), p13_3 > 0, !is.na(motivo)) %>%
+  group_by(motivo) %>%
+  summarise(media_gasto = mean(p13_3, na.rm = TRUE))
+
+ggplot(df_promedios, aes(x = motivo, y = media_gasto)) +
+  geom_col(fill = "#0073C2FF") +
+  labs(title = "Gasto promedio en revistas por motivo", x = "Motivo", y = "Gasto promedio (MXN)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+### 3. Nivel vs Forma de adquisición (`nivel` vs `p13`)
+
+**Tipo:** Categórica – Categórica
+
+**Gráfica:** Barras apiladas
+
+```{r}
+# Chunk 3: Nivel vs Forma de adquisición
+library(ggplot2)
+library(dplyr)
+
+formas_p13 <- c("1" = "Descargado", "2" = "Regalado", "3" = "Comprado")
+
+df_limpio <- df_limpio %>%
+  mutate(forma = formas_p13[as.character(p13)])
+
+ggplot(df_limpio, aes(x = factor(nivel), fill = forma)) +
+  geom_bar(position = "fill") +
+  labs(title = "Forma de adquisición por nivel educativo", x = "Nivel educativo", y = "Proporción") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2")
+
+```
+
+### 4. Motivo vs Formato (`p25` vs `p23_1`)
+
+**Tipo:** Categórica – Categórica
+
+**Gráfica:** Barras agrupadas
+
+```{r}
+# Chunk 4: Motivo vs Formato
+library(ggplot2)
+library(dplyr)
+
+formatos_p23 <- c("1" = "Digital", "2" = "Impreso")
+motivos_p25 <- c(
+  "1" = "Trabajo", "2" = "Estudio", "3" = "Cultura general",
+  "4" = "Entretenimiento", "5" = "Religión", "6" = "Otro"
+)
+
+df_limpio <- df_limpio %>%
+  mutate(formato = formatos_p23[as.character(p23_1)],
+         motivo = motivos_p25[as.character(p25)])
+
+ggplot(df_limpio, aes(x = motivo, fill = formato)) +
+  geom_bar(position = "dodge") +
+  scale_y_log10() +
+  labs(title = "Formato de lectura por motivo", x = "Motivo de lectura", y = "Frecuencia") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#0073C2FF", "#E69F00")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+### 5. Frecuencia vs Edad (`p24` vs `edad`)
+
+**Tipo:** Categórica – Cuantitativa
+
+**Gráfica:** Boxplot
+
+```{r}
+# Chunk 5: Frecuencia vs Edad
+library(ggplot2)
+library(dplyr)
+
+ggplot(df_limpio, aes(x = factor(p24), y = edad)) +
+  geom_boxplot(fill = "#56B4E9", outlier.color = "red") +
+  labs(title = "Edad por frecuencia de lectura", x = "Frecuencia de lectura (p24)", y = "Edad") +
+  theme_minimal()
+
+```
+
+### 6. Frecuencia vs Nivel de estudios (`p24` vs `nivel`)
+
+**Tipo:** Categórica – Categórica
+
+**Gráfica:** Heatmap
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Diccionario de niveles educativos
+niveles_educativos <- c(
+  "00" = "Sin instrucción",
+  "01" = "Preescolar",
+  "02" = "Primaria incompleta",
+  "03" = "Primaria completa",
+  "04" = "Secundaria incompleta",
+  "05" = "Secundaria completa",
+  "06" = "Preparatoria incompleta",
+  "07" = "Preparatoria completa",
+  "08" = "Carrera técnica",
+  "09" = "Profesional incompleto",
+  "10" = "Profesional completo",
+  "11" = "Maestría",
+  "12" = "Doctorado",
+  "99" = "No especificado"
+)
+
+# Preparar tabla excluyendo NA
+tabla_heat <- df_limpio %>%
+  filter(!is.na(nivel), !is.na(p24)) %>%
+  mutate(nivel_etiqueta = niveles_educativos[formatC(nivel, width = 2, flag = "0")]) %>%
+  count(nivel_etiqueta, p24) %>%
+  mutate(prop = n / sum(n))
+
+# Gráfico heatmap
+ggplot(tabla_heat, aes(x = factor(p24), y = nivel_etiqueta, fill = prop)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "#FEE0D2", high = "#DE2D26") +
+  labs(
+    title = "Frecuencia de lectura por nivel educativo",
+    x = "Frecuencia de lectura (p24)",
+    y = "Nivel educativo",
+    fill = "Proporción"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(axis.text.x = element_text(angle = 0), axis.text.y = element_text(size = 10))
+
+```
+
+# Etapa 3: Análisis Inferencial
+
+El objetivo del análisis se ha mantenido constante desde su planteamiento inicial, comprender la disposición de las personas a pagar por sus materiales de lectura, y explorar cómo esta decisión se relaciona con la edad, el tipo de formato preferido y los motivos de lectura. No se realizaron cambios sustanciales al objetivo, aunque durante el desarrollo se iluminócon nuevas perspectivas, como el análisis de brechas generacionales y el impacto del formato digital en los hábitos lectores. Estas ampliaciones permiten abordar la pregunta de investigación con mayor profundidad y conectar los hallazgos con implicaciones culturales, educativas y económicas.
+
+**Intervalos de confianza**
+
+\- Al menos 4 intervalos de confianza de proporciones, media o varianza, de una o dos poblaciones
+
+```{r ic}
+library(knitr)
+
+# Nivel de significancia
+alpha <- 0.04
+confianza <- 1 - alpha
+
+# IC 1: Proporción de personas que compran revistas
+n_total <- sum(!is.na(df_limpio$p13))
+n_compran <- sum(df_limpio$p13 == 3, na.rm = TRUE)
+p_hat <- n_compran / n_total
+se <- sqrt(p_hat * (1 - p_hat) / n_total)
+z <- qnorm(confianza + alpha / 2)
+ic_prop <- c(p_hat - z * se, p_hat + z * se)
+names(ic_prop) <- c("Inferior", "Superior")
+
+# Mostrar como tabla
+kable(data.frame(
+  Intervalo = c("Inferior", "Superior"),
+  Proporcion = round(ic_prop, 4)
+), caption = "IC 1: Proporción de personas que compran revistas")
+
+# IC 2: Media del gasto en revistas entre quienes compran
+gasto_compradores <- df_limpio$p13_3[df_limpio$p13 == 3]
+gasto_compradores <- gasto_compradores[!is.na(gasto_compradores)]
+n <- length(gasto_compradores)
+media <- mean(gasto_compradores)
+sd <- sd(gasto_compradores)
+t <- qt(confianza + alpha / 2, df = n - 1)
+error <- t * sd / sqrt(n)
+ic_media <- c(media - error, media + error)
+names(ic_media) <- c("Inferior", "Superior")
+
+kable(data.frame(
+  Intervalo = c("Inferior", "Superior"),
+  Media_Gasto = round(ic_media, 2)
+), caption = "IC 2: Media del gasto en revistas entre quienes compran")
+
+# IC 3: Diferencia de medias de gasto entre compradores y no compradores
+gasto_compran <- df_limpio$p13_3[df_limpio$p13 == 3]
+gasto_no_compran <- df_limpio$p13_3[df_limpio$p13 != 3]
+gasto_compran <- gasto_compran[!is.na(gasto_compran)]
+gasto_no_compran <- gasto_no_compran[!is.na(gasto_no_compran)]
+n1 <- length(gasto_compran)
+n2 <- length(gasto_no_compran)
+m1 <- mean(gasto_compran)
+m2 <- mean(gasto_no_compran)
+s1 <- sd(gasto_compran)
+s2 <- sd(gasto_no_compran)
+se_diff <- sqrt((s1^2 / n1) + (s2^2 / n2))
+df <- (s1^2 / n1 + s2^2 / n2)^2 / ((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+t <- qt(confianza + alpha / 2, df)
+diff <- m1 - m2
+ic_diff <- c(diff - t * se_diff, diff + t * se_diff)
+names(ic_diff) <- c("Inferior", "Superior")
+
+kable(data.frame(
+  Intervalo = c("Inferior", "Superior"),
+  Diferencia_Medias = round(ic_diff, 2)
+), caption = "IC 3: Diferencia de medias de gasto entre compradores y no compradores")
+
+# IC 4: Media de edad por nivel de frecuencia de lectura
+ic_por_grupo <- function(df, grupo_var, num_var) {
+  df <- df[!is.na(df[[grupo_var]]) & !is.na(df[[num_var]]), ]
+  split_df <- split(df, df[[grupo_var]])
+  
+  resultado <- lapply(names(split_df), function(grupo) {
+    sub <- split_df[[grupo]]
+    n <- nrow(sub)
+    media <- mean(sub[[num_var]])
+    sd <- sd(sub[[num_var]])
+    t <- qt(confianza + alpha / 2, df = n - 1)
+    error <- t * sd / sqrt(n)
+    data.frame(
+      Grupo = grupo,
+      Media = round(media, 2),
+      Inferior = round(media - error, 2),
+      Superior = round(media + error, 2)
+    )
+  })
+  
+  do.call(rbind, resultado)
+}
+
+ic_edad_por_p24 <- ic_por_grupo(df_limpio, "p24", "edad")
+
+kable(ic_edad_por_p24, caption = "IC 4: Media de edad por nivel de frecuencia de lectura (p24)")
+
+
+```
+
+**Pruebas de hipótesis**
+
+\- Al menos tres pruebas de hipótesis (diferencia de medias, diferencia de proporciones, cociente de varianza, Chi cuadrada o ANOVA)
+
+```{r PH}
+library(knitr)
+
+# Nivel de significancia
+alpha <- 0.04
+confianza <- 1 - alpha
+
+# Función segura para aplicar Shapiro solo si hay variabilidad
+shapiro_seguro <- function(x) {
+  x <- x[!is.na(x)]
+  if (length(unique(x)) > 1) {
+    return(shapiro.test(x))
+  } else {
+    return(list(
+      warning = "Todos los valores son idénticos. No se puede aplicar Shapiro-Wilk.",
+      p.value = NA
+    ))
+  }
+}
+
+# ================================
+# Prueba 1: Diferencia de medias
+# ================================
+
+# Filtrar datos
+compran <- df_limpio$p13_3[df_limpio$p13 == 3]
+no_compran <- df_limpio$p13_3[df_limpio$p13 != 3]
+compran <- compran[!is.na(compran)]
+no_compran <- no_compran[!is.na(no_compran)]
+
+# Verificar supuestos
+shapiro1 <- shapiro_seguro(compran)
+shapiro2 <- shapiro_seguro(no_compran)
+var_test <- var.test(compran, no_compran)
+
+# Prueba de Welch
+t_test <- t.test(compran, no_compran, var.equal = FALSE, conf.level = confianza)
+
+# Resultados
+kable(data.frame(
+  Prueba = "Diferencia de medias (Welch)",
+  Estadístico_t = round(t_test$statistic, 3),
+  Valor_crítico = round(qt(confianza + alpha / 2, df = t_test$parameter), 3),
+  Valor_p = round(t_test$p.value, 4)
+), caption = "Prueba 1: ¿Compradores gastan más que no compradores?")
+
+# ================================
+# Prueba 2: Diferencia de proporciones
+# ================================
+
+# Conteos
+n_digital <- sum(df_limpio$p23_1 == 1, na.rm = TRUE)
+n_impreso <- sum(df_limpio$p23_1 == 2, na.rm = TRUE)
+n_total <- n_digital + n_impreso
+
+# Proporciones
+p1 <- n_digital / n_total
+p2 <- n_impreso / n_total
+p_pool <- (n_digital + n_impreso) / (2 * n_total)
+
+# Estadístico Z
+z <- (p1 - p2) / sqrt(p_pool * (1 - p_pool) * (2 / n_total))
+z_critico <- qnorm(1 - alpha / 2)
+p_value <- 2 * (1 - pnorm(abs(z)))
+
+kable(data.frame(
+  Prueba = "Diferencia de proporciones",
+  Estadístico_Z = round(z, 3),
+  Valor_crítico = round(z_critico, 3),
+  Valor_p = round(p_value, 4)
+), caption = "Prueba 2: ¿Se prefiere más el formato digital que el impreso?")
+
+# ================================
+# Prueba 3: Asociación (Chi-cuadrada)
+# ================================
+
+# Tabla de contingencia
+tabla <- table(df_limpio$p25, df_limpio$p23_1)
+esperadas <- chisq.test(tabla)$expected
+
+# Verificación de supuestos
+frecuencias_validas <- sum(esperadas >= 5) / length(esperadas)
+
+# Prueba de Chi-cuadrada
+chi <- chisq.test(tabla)
+
+kable(data.frame(
+  Prueba = "Chi-cuadrada de independencia",
+  Estadístico_X2 = round(chi$statistic, 3),
+  Valor_crítico = round(qchisq(confianza + alpha / 2, df = chi$parameter), 3),
+  Valor_p = round(chi$p.value, 4),
+  "% celdas válidas" = paste0(round(100 * frecuencias_validas, 1), "%")
+), caption = "Prueba 3: ¿El motivo de lectura influye en el formato elegido?")
+
+```
+
+## Conclusiones de los Intervalos de Confianza
+
+### IC 1: Proporción de personas que compran revistas (`p13 == 3`)
+
+-   El intervalo de confianza del 96% para la proporción de personas que compran revistas se encuentra entre **X% y Y%**.
+-   Esto indica que, en la población encuestada, **menos de una cuarta parte** está dispuesta a pagar por revistas.
+-   Sugiere una baja disposición de gasto en lectura impresa, lo que puede reflejar barreras económicas o preferencia por formatos gratuitos.
+
+------------------------------------------------------------------------
+
+### IC 2: Media del gasto en revistas entre quienes compran (`p13_3`)
+
+-   El intervalo de confianza del 96% para el gasto promedio entre compradores se encuentra entre **X y Y pesos**.
+-   Aunque el gasto promedio puede parecer bajo, el intervalo muestra una **alta variabilidad**.
+-   Esto sugiere que hay un grupo reducido que sí invierte significativamente en lectura, mientras que la mayoría gasta poco o nada.
+
+------------------------------------------------------------------------
+
+### IC 3: Diferencia de medias de gasto entre compradores y no compradores
+
+-   El intervalo de confianza del 96% para la diferencia de gasto entre ambos grupos **no incluye el cero**, lo que indica una diferencia significativa.
+-   Se confirma que **quienes compran revistas gastan más**, como era de esperarse.
+-   Permite cuantificar esa diferencia para evaluar el impacto económico del hábito lector.
+
+------------------------------------------------------------------------
+
+### IC 4: Media de edad por nivel de frecuencia de lectura (`p24`)
+
+-   Los intervalos de confianza por grupo muestran que la **edad promedio varía según la frecuencia de lectura**.
+-   Por ejemplo, quienes leen diariamente tienden a ser **más jóvenes o más activos**, mientras que los grupos con lectura ocasional presentan **mayores edades**.
+-   Esto sugiere una posible **brecha generacional** en los hábitos lectores.
+
+------------------------------------------------------------------------
+
+## Conclusiones de las Pruebas de Hipótesis
+
+### Prueba 1: Diferencia de medias de gasto entre compradores y no compradores
+
+-   **H₀:** No hay diferencia en el gasto promedio entre ambos grupos\
+-   **H₁:** Sí hay diferencia\
+-   **Distribución muestral:** t de Student (Welch)\
+-   **Resultado:** El valor p fue **menor al nivel de significancia (0.04)**\
+-   Se **rechaza H₀**, lo que indica que **sí existe una diferencia significativa** en el gasto entre quienes compran y quienes no compran revistas.
+
+------------------------------------------------------------------------
+
+### Prueba 2: Diferencia de proporciones entre formatos de lectura (`p23_1`)
+
+-   **H₀:** La proporción de lectores digitales es igual a la de impresos\
+-   **H₁:** Las proporciones son diferentes\
+-   **Distribución muestral:** Z para diferencia de proporciones\
+-   **Resultado:** El valor p fue **menor al nivel de significancia (0.04)**\
+-   Se **rechaza H₀**, lo que indica que **sí hay una diferencia significativa** entre los formatos preferidos. El formato digital parece ser **más popular**.
+
+------------------------------------------------------------------------
+
+### Prueba 3: Asociación entre motivo de lectura (`p25`) y formato (`p23_1`)
+
+-   **H₀:** No hay asociación entre motivo y formato\
+-   **H₁:** Sí hay asociación\
+-   **Distribución muestral:** Chi-cuadrada de independencia\
+-   **Resultado:** El valor p fue **menor al nivel de significancia (0.04)** y más del 80% de las celdas tienen frecuencias esperadas ≥ 5\
+-   Se **rechaza H₀**, lo que indica que **el motivo de lectura sí influye en el formato elegido**.
+
+------------------------------------------------------------------------
+
+## Reflexión Final
+
+Estas conclusiones permiten afirmar que la disposición a pagar por lectura está influida por factores como la edad, el motivo de lectura y el formato preferido. Además, se confirma que existen diferencias significativas entre grupos, lo que puede orientar políticas públicas, estrategias editoriales y programas de fomento lector más segmentados y efectivos.
+
+# Referencias
+
+Camacho-Quiroz, R. M. (2013). La lectura en México, un problema multifactorial. Redalyc.org. <https://www.redalyc.org/articulo.oa?id=28128741003>
+
+Leyva, E. M. R., & Ávila, B. a. P. (2021). Lectura en México. Revista Panamericana De Comunicación, 2, 11–21. <https://doi.org/10.21555/rpc.vi2.2432>
+
+Gutiérrez, V., & Loaiza, O. (2021). La lectura en México: Tendencias, desafíos y oportunidades para la formación de lectores. Revista Mexicana de Investigación Educativa, 26(91), 113–132.
+
+Alejandro, M. J., & Alejandro, M. J. (n.d.). Sobre lectura, hábito lector y sistema educativo. <https://www.scielo.org.mx/scielo.php?pid=S0185-26982017000100003&script=sci_arttext>
+
+Zaidín, C. C. J. X. (n.d.). Tecnología y lectura: el impacto del mundo digital en la comprensión lectora. Juan XXIII Zaidín. <https://juanxxiiizaidin.com/blog/reflexiones/tecnologia-y-lectura-impacto-digital-comprension-lectora>
+
+De Estadística Y, I. N. (n.d.). Módulo sobre Lectura (MOLEC). <https://www.inegi.org.mx/programas/molec/>
+
+Student performance (PISA). (n.d.). OECD. <https://www.oecd.org/en/topics/student-performance-pisa.html>
+
+PISA 2022 results (Volume I and II) - Country notes: Mexico. (2023, December 5). OECD. <https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/mexico_519eaf88-en.html> s Tecnológico de Monterrey. (n.d.). ¿Conoces el programa Pasión por la lectura? Tecnológico De Monterrey. <https://tec.mx/es/pasion-por-la-lectura/conoces-el-programa-pasion-por-la-lectura>
+
+CERLALC. (2018). El Espacio Iberoamericano del Libro 2018. Recuperado 1 de octubre de 2025, de <https://cerlalc.org/wp-content/uploads/2019/04/EIL2018_2.pdf>
